@@ -26,9 +26,10 @@ resource "aws_security_group" "githubaction_vm_sg" {
 }
 
 resource "aws_instance" "githubactions_vm" {
-  ami           = var.ami_id
-  instance_type = "t2.medium"
-  key_name      = "linux-vm-key"
+  ami                         = var.ami_id
+  instance_type               = "t2.medium"
+  key_name                    = "linux-vm-key"
+  associate_public_ip_address = true
 
   vpc_security_group_ids = [
     aws_security_group.githubaction_vm_sg.id
