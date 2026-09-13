@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  sonar:
+  build:
     name: Build
     runs-on: self-hosted
 
@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v8
+        uses: SonarSource/sonarqube-scan-@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
