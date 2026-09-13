@@ -1,3 +1,4 @@
+```yaml
 name: Build
 
 on:
@@ -16,23 +17,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '20'
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Check Node.js
-        run: |
-          node -v
-          npm -v
-
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v8
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-     
+
+      - name: Trivy File Scan
+        run: trivy fs . > trivy.txt
+
