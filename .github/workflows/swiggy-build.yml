@@ -7,7 +7,7 @@ on:
 
 jobs:
   sonar:
-    name: SonarQube Analysis
+    name: Build
     runs-on: self-hosted
 
     steps:
